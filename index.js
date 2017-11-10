@@ -1,0 +1,71 @@
+//This is a sample for MagcorpMall.com, fetching latest news from Magcorpblog.com
+<div class="panel-heading widget-heading">
+		<h3 class="panel-title">Latest News</h3>
+	</div>
+		<div class="panel-body">
+		<script type="text/javascript">
+  //This requires that you already have the CSS and html of how you want it to look. All you need to do is edit the html write below to fit.  
+function showrpwiththumbs(t) {
+  document.write('<div id="blog-carousel" class="widget-blogs  style1 latest-posts panel panel-default  "><div class="owl-carousel-play" data-ride="owlcarousel"> <div class="owl-carousel owl-theme" data-show="1" data-pagination="false" data-navigation="true" style="opacity: 1; display: block;"><div class="owl-wrapper-outer"><div class="owl-item" style="width: 1140px;"><div class="row item products-row active">');
+  for (var e = 0; e < posts_number; e++) {
+    var r, n = t.feed.entry[e],
+      i = n.title.$t;
+    if (e == t.feed.entry.length) break;
+    for (var o = 0; o < n.link.length; o++) {
+      if ("replies" == n.link[o].rel && "text/html" == n.link[o].type) var l = n.link[o].title,
+        m = n.link[o].href;
+      if ("alternate" == n.link[o].rel) {
+        r = n.link[o].href;
+        break
+      }
+    }
+    var u;
+    try {
+      u = n.media$thumbnail.url.replace(/\/s[0-9]+\-c/g, "/s" + ImageSize + "-c")
+    } catch (h) {
+      s = n.content.$t, a = s.indexOf("<img"), b = s.indexOf('src="', a), c = s.indexOf('"', b + 5), d = s.substr(b + 5, c - b - 5), u = -1 != a && -1 != b && -1 != c && "" != d ? d : "http://2.bp.blogspot.com/-C3Mo0iKKiSw/VGdK808U7rI/AAAAAAAAAmI/W7Ae_dsEVAE/s1600/no-thumb.png"
+    }
+    var p = n.published.$t,
+      f = p.substring(0, 4),
+      g = p.substring(5, 7),
+      v = p.substring(8, 10),
+      w = new Array;
+      var _ = "",
+      $ = 0;
+      var rdm = "",
+      rd = 0;
+    if (w[1] = "Jan", w[2] = "Feb", w[3] = "Mar", w[4] = "Apr", w[5] = "May", w[6] = "Jun", w[7] = "Jul", w[8] = "Aug", w[9] = "Sep", w[10] = "Oct", w[11] = "Nov", w[12] = "Dec", document.write('<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 post-content"><div class="latest-posts-body"><div class="latest-posts-image">'), 1 == showpostswiththumbs && document.write('<a class="image" href="' + r + '" target="_blank"><img class="img-responsive" src="' + u + '" /></a>'), document.write('</div><div class="latest-posts-meta"><div class="info"><a class="latest-posts-title" href="' + r + '" target ="_blank">' + i + "</a>"),document.write('<div class="created"><span class="date"><i class="fa fa-clock-o" aria-hidden="true"></i>'), 1 == posts_date && (_ = _ + w[parseInt(g, 10)] + " " + v + " " + f, $ = 1), 1 == spanit && (1 == $ && (_ += " </span> "), $ = 1), 1 == showcomments && (1 == $ && (_ += "<span class='comment'><i class='fa fa-comments-o' aria-hidden='true'></i>"), "1 Comments" == l && (l = "1 Comment"), "0 Comments" == l && (l = "No Comments"), l = '<a href="' + m + '" target ="_blank">' + l + "</a></span>", _ += l, $ = 1), 1 == insidereadmorelink && (1 == $ && (_ += " | "), _ = _ + '<a href="' + r + '" class="readmore btn btn-outline-light" target ="_blank">Read more</a>', $ = 1), document.write(_),document.write("</div></div><div class='posts-meta'><div class='description'>"), "content" in n) var A = n.content.$t;
+    else if ("summary" in n) var A = n.summary.$t;
+    else var A = "";
+    var k = /<\S[^>]*>/g;
+    if (A = A.replace(k, ""), 1 == post_summary)
+      if (A.length < summary_chars) document.write(A);
+      else {
+        A = A.substring(0, summary_chars);
+        var y = A.lastIndexOf(" ");
+        A = A.substring(0, y), document.write(A + "...")
+      }
+      document.write("</div>"), 
+        1 == insidereadmorelink2 && (1 == rd && (rdm += " | "), rdm = rdm + '<a href="' + r + '" class="readmore btn btn-outline-light" target ="_blank">Read more</a>', rd = 1),document.write(rdm), document.write("</div></div></div></div>")
+  }
+  document.write("</div>")
+  document.write("</div></div></div></div></div>")
+}
+
+</script>
+
+<script type="text/javascript">
+var ImageSize = 600;
+var posts_number = 3;
+var showpostswiththumbs = true;
+var insidereadmorelink = false;
+var insidereadmorelink2 = true;
+var showcomments = true;
+var posts_date = true;
+var post_summary = true;
+var summary_chars = 70;
+var spanit = true;
+</script>
+
+<script src="https://www.magcorpblog.com/feeds/posts/default?orderby=published&amp;alt=json-in-script&amp;callback=showrpwiththumbs"></script>	</div>	 
+</div>
